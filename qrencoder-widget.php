@@ -34,13 +34,13 @@ class QRCode_Encoder_Widget extends WP_Widget {
 <script type="text/javascript" src="/wp-content/plugins/qr-encoder/yui/yahoo/yahoo-min.js"></script> 
 <script type="text/javascript" src="/wp-content/plugins/qr-encoder/yui/event/event-min.js"></script> 
 <script type="text/javascript" src="/wp-content/plugins/qr-encoder/yui/connection/connection-min.js"></script> 
-<script type="text/javascript" src="/wp-content/plugins/qr-encoder/js/abdul.js"></script> 
+<script type="text/javascript" src="/wp-content/plugins/qr-encoder/js/qr.js"></script> 
 
 <br /><br/>
 <center>
 <h2><a href=http://wordpress.org/extend/plugins/qr-encoder/ target=blank>QR Encoder</a></h2>
 
-<form id="abdul" name="abdul" onSubmit="return false;">
+<form id="qrencoder" name="qrencoder" onSubmit="return false;">
 <input type="text" name="q" id="q" onKeyPress="javascript:myqr(event);" size="20">
 <input type="hidden" name="from" id="from" value="wb:widget">
 <input type="hidden" name="bot" id="bot" value="abdul">
@@ -48,7 +48,7 @@ class QRCode_Encoder_Widget extends WP_Widget {
 <br/>
 <table border="0" style="border:0px">
 <tr style="border:none" align="left"><td width="90%" align="left" style="border:none">
-<span id="abdulanswer" style="border:0px"></span>
+<span id="qrgenerate" style="border:0px"></span>
 </td></tr></table>
 
 </center>
