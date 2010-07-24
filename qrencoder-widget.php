@@ -31,10 +31,10 @@ class QRCode_Encoder_Widget extends WP_Widget {
 
 ?>
 
-<script type="text/javascript" src="/wp-content/plugins/abdul-wp-plugin/yui/yahoo/yahoo-min.js"></script> 
-<script type="text/javascript" src="/wp-content/plugins/abdul-wp-plugin/yui/event/event-min.js"></script> 
-<script type="text/javascript" src="/wp-content/plugins/abdul-wp-plugin/yui/connection/connection-min.js"></script> 
-<script type="text/javascript" src="/wp-content/plugins/abdul-wp-plugin/js/abdul.js"></script> 
+<script type="text/javascript" src="/wp-content/plugins/qr-encoder/yui/yahoo/yahoo-min.js"></script> 
+<script type="text/javascript" src="/wp-content/plugins/qr-encoder/yui/event/event-min.js"></script> 
+<script type="text/javascript" src="/wp-content/plugins/qr-encoder/yui/connection/connection-min.js"></script> 
+<script type="text/javascript" src="/wp-content/plugins/qr-encoder/js/abdul.js"></script> 
 
 <br /><br/>
 <center>
