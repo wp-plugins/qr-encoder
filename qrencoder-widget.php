@@ -3,7 +3,7 @@
 Plugin Name: QRCode Encoder
 Plugin URI: http://wordpress.org/extend/plugins/qr-encoder/
 Description: QRCode Encoder
-Version: 0.1.1
+Version: 0.1.2
 Author: DreamBuilder Inc.
 Author URI: http://www.conan.in.th/
 */
