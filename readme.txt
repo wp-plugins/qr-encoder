@@ -1,7 +1,7 @@
 === QR Encoder ===
 Contributors: Guangming Sangkeettrakarn
 Tags: QR Code, Encoder
-Stable tag: 0.1
+Stable tag: 0.1.1
 Requires at least: 2.8
 Tested up to: 3.0
 
