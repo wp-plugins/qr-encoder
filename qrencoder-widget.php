@@ -68,6 +68,7 @@ class QRCode_Encoder_Widget extends WP_Widget {
 
 add_action( 'widgets_init', 'qrencoder_widget_init' );
 
+
 function qrencoder_widget_init() {
 	register_widget('QRCode_Encoder_Widget');
 }
