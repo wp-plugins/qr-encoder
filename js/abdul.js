@@ -49,7 +49,7 @@ function makeRequest(){
 	}
 }
 
-function myquery(e){
+function myqr(e){
 	var n = e.keyCode;
 	if(n==13){//key of Enter Key
 		makeRequest();
