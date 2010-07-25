@@ -3,7 +3,7 @@
 Plugin Name: QRCode Encoder
 Plugin URI: http://wordpress.org/extend/plugins/qr-encoder/
 Description: QRCode Encoder
-Version: 0.1.3.2
+Version: 0.1.3.3
 Author: DreamBuilder Inc.
 Author URI: http://www.conan.in.th/
 */
@@ -40,6 +40,7 @@ class QRCode_Encoder_Widget extends WP_Widget {
 
 <br /><br/>
 <center>
+
 <form id="qrencoder" name="qrencoder" onSubmit="return false;">
 <input type="text" name="qr" id="qr" onKeyPress="javascript:myqr(event);" size="20">
 <input type="hidden" name="qrfrom" id="qrfrom" value="wb:widget">
@@ -54,8 +55,8 @@ class QRCode_Encoder_Widget extends WP_Widget {
 </center>
 
 
-<script>
-var handleEvent = {
+<script language="javascript">
+var qrhandleEvent = {
 	qrstart:function(eventType, args){
 	// do something when startEvent fires.
 	document.getElementById('qrgenerate').innerHTML = "<center><img src=<?php echo WP_PLUGIN_URL;?>/qr-encoder/images/wait.gif></center>";
@@ -86,18 +87,18 @@ var handleEvent = {
 
 var qrcallback = {
 	customevents:{
-		onStart:handleEvent.qrstart,
-		onComplete:handleEvent.qrcomplete,
-		onSuccess:handleEvent.qrsuccess,
-		onFailure:handleEvent.qrfailure,
-		onAbort:handleEvent.qrabort
+		onStart:qrhandleEvent.qrstart,
+		onComplete:qrhandleEvent.qrcomplete,
+		onSuccess:qrhandleEvent.qrsuccess,
+		onFailure:qrhandleEvent.qrfailure,
+		onAbort:qrhandleEvent.qrabort
 	},
-	scope:handleEvent,
+	scope:qrhandleEvent,
  	argument:["foo","bar","baz"]
 };
 
 
-function makeRequest(){
+function makeQRRequest(){
 	var q = encodeURIComponent(document.getElementById("qr").value);
 	if(q!=""){
 		var sUrl = "<?php echo WP_PLUGIN_URL;?>/qr-encoder/abdul.php";
@@ -109,7 +110,7 @@ function makeRequest(){
 function myqr(e){
 	var n = e.keyCode;
 	if(n==13){//key of Enter Key
-		makeRequest();
+		makeQRRequest();
 		document.qrencoder.qr.select();
 	}
 	
