@@ -25,16 +25,18 @@ class QRCode_Encoder_Widget extends WP_Widget {
 
 	function widget( $args, $instance ) {
 		
-		$title = apply_filters('widget_title', $instance['title']);
-		if ( empty($title) ) $title = __( 'QRCode Encoder' );
+        extract( $args );
+        echo $before_widget;
+        $title = apply_filters('widget_title', $instance['title']);
+        if( $title ) echo $before_title . $title . $after_title;
 
 
 ?>
 
-<script type="text/javascript" src="/wp-content/plugins/qr-encoder/yui/yahoo/yahoo-min.js"></script> 
-<script type="text/javascript" src="/wp-content/plugins/qr-encoder/yui/event/event-min.js"></script> 
-<script type="text/javascript" src="/wp-content/plugins/qr-encoder/yui/connection/connection-min.js"></script> 
-<script type="text/javascript" src="/wp-content/plugins/qr-encoder/js/qr.js"></script> 
+<script type="text/javascript" src="<?php echo WP_PLUGIN_URL;?>/qr-encoder/yui/yahoo/yahoo-min.js"></script> 
+<script type="text/javascript" src="<?php echo WP_PLUGIN_URL;?>/qr-encoder/yui/event/event-min.js"></script> 
+<script type="text/javascript" src="<?php echo WP_PLUGIN_URL;?>/qr-encoder/yui/connection/connection-min.js"></script> 
+
 
 <br /><br/>
 <center>
@@ -54,15 +56,97 @@ class QRCode_Encoder_Widget extends WP_Widget {
 </center>
 
 
+<script>
+var handleEvent = {
+	qrstart:function(eventType, args){
+	// do something when startEvent fires.
+	document.getElementById('qrgenerate').innerHTML = "<center><img src=<?php echo WP_PLUGIN_URL;?>/qr-encoder/images/wait.gif></center>";
+	},
+
+	qrcomplete:function(eventType, args){
+	// do something when completeEvent fires.
+		document.qrencoder.q.select();
+	},
+
+	qrsuccess:function(eventType, args){
+	// do something when successEvent fires.
+		if(args[0].responseText !== undefined){
+			document.getElementById('qrgenerate').innerHTML = args[0].responseText;
+			document.qrencoder.q.select();
+		}
+	},
+
+	qrfailure:function(eventType, args){
+	// do something when failureEvent fires.
+		alert('answering system error');
+	},
+
+	qrabort:function(eventType, args){
+	// do something when abortEvent fires.
+	}
+};
+
+var qrcallback = {
+	customevents:{
+		onStart:handleEvent.qrstart,
+		onComplete:handleEvent.qrcomplete,
+		onSuccess:handleEvent.qrsuccess,
+		onFailure:handleEvent.qrfailure,
+		onAbort:handleEvent.qrabort
+	},
+	scope:handleEvent,
+ 	argument:["foo","bar","baz"]
+};
+
+
+function makeRequest(){
+	var q = encodeURIComponent(document.getElementById("qr").value);
+	if(q!=""){
+		var sUrl = "<?php echo WP_PLUGIN_URL;?>/qr-encoder/abdul.php";
+		var data = "q="+q;
+		var request = YAHOO.util.Connect.asyncRequest('POST', sUrl, qrcallback,data);
+	}
+}
+
+function myqr(e){
+	var n = e.keyCode;
+	if(n==13){//key of Enter Key
+		makeRequest();
+		document.qrencoder.qr.select();
+	}
+	
+}
+
+
+</script>
+
+
 <?php
 		
 		
 		
 	}
 
-	function update( $new_instance, $old_instance ) {
+    //////////////////////////////////////////////////////
+    //Update the widget settings
+    function update( $new_instance, $old_instance )
+    {
+        $instance = $old_instance;
+        $instance['title'] = $new_instance['title'];
+        return $instance;
+    }
 
-	}
+    ////////////////////////////////////////////////////
+    //Display the widget settings on the widgets admin panel
+    function form( $instance )
+    {
+        ?>
+        <p>
+            <label for="<?php echo $this->get_field_id('title'); ?>"><?php echo 'Title:'; ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $instance['title']; ?>" />
+        </p>
+        <?php
+    }
 
 }
 
