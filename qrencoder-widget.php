@@ -65,14 +65,14 @@ var handleEvent = {
 
 	qrcomplete:function(eventType, args){
 	// do something when completeEvent fires.
-		document.qrencoder.q.select();
+		document.qrencoder.qr.select();
 	},
 
 	qrsuccess:function(eventType, args){
 	// do something when successEvent fires.
 		if(args[0].responseText !== undefined){
 			document.getElementById('qrgenerate').innerHTML = args[0].responseText;
-			document.qrencoder.q.select();
+			document.qrencoder.qr.select();
 		}
 	},
 
