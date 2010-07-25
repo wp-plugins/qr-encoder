@@ -40,8 +40,6 @@ class QRCode_Encoder_Widget extends WP_Widget {
 
 <br /><br/>
 <center>
-<h2><a href=http://wordpress.org/extend/plugins/qr-encoder/ target=blank>QR Encoder</a></h2>
-
 <form id="qrencoder" name="qrencoder" onSubmit="return false;">
 <input type="text" name="qr" id="qr" onKeyPress="javascript:myqr(event);" size="20">
 <input type="hidden" name="qrfrom" id="qrfrom" value="wb:widget">
